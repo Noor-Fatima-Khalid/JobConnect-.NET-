@@ -4,19 +4,19 @@ JobConnect is a modern webz-based platform designed to streamline the hiring pro
 
 **Features** <br>
 **For Employers** <br>
-Post new job listings <br>
-View and manage job applications <br>
-Shortlist applicants <br>
-Schedule meetings/interviews with candidates <br>
+ - Post new job listings <br>
+ - View and manage job applications <br>
+ - Shortlist applicants <br>
+ - Schedule meetings/interviews with candidates <br>
 
 
 **For Applicants** <br>
-Apply to job listings <br>
-Filter jobs according to their skills <br>
-Track submitted applications <br>
-Get real-time updates on application status <br>
+ - Apply to job listings <br>
+ - Filter jobs according to their skills <br>
+ - Track submitted applications <br>
+ - Get real-time updates on application status <br>
 
-🖥️Tech Stack <br>
+🖥️**Tech Stack** <br>
 Frontend: HTML / BootStrap CSS / JavaScript <br>
 Backend: ASP.NET Core with Identity and EF core <br>
 Database: MySQL <br><br>
