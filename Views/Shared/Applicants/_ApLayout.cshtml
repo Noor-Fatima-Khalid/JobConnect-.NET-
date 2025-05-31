@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Job_Portal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Job_Portal.styles.css" asp-append-version="true" />
+    @* BootStrap CSS
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css">
+    @* BootStrap JS *@
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.js"></script>
+    @* BootStrap Icons *@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+
+<body class="bg-mybg">
+    <header>
+        @* top nav bar *@
+        <nav class="navbar sticky-top navbar-expand-lg bg-white shadow-sm pt-2 d-none d-lg-flex">
+            <div class="container">
+                <a class="navbar-brand">
+                    <img src="/images/logo1.png" alt="logo" style="width: 80px; height: auto;">
+                </a>
+
+                <form class="d-flex search-bar ms-3">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    </div>
+                </form>
+
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-5 ps-4">
+                        <li class="nav-item text-center ms-5">
+                            <a asp-controller="Applicant" asp-action="Feed" class="nav-link fs-6">
+                                <i class="bi bi-house-door-fill fs-4"></i><br>Home
+                            </a>
+                        </li>
+
+                        @* <li class="nav-item text-center ms-4">
+                            <a asp-controller="Applicant" asp-action="JobSearch" class="nav-link fs-6">
+                            <i class="bi bi-briefcase-fill fs-4"></i><br>Job Search
+                            </a>
+                        </li> *@
+                        <li class="nav-item text-center ms-4">
+                            <a asp-controller="Applicant" asp-action="MyApplications" class="nav-link fs-6">
+                            <i class="bi bi-envelope-fill fs-4"></i><br>My Applications
+                            </a>
+                        </li>
+                        <li class="nav-item text-center ms-4">
+                            <a asp-controller="Applicant" asp-action="Notifications" class="nav-link fs-6">
+                                <i class="bi bi-bell-fill fs-4"></i><br>Notifications
+                            </a>
+                        </li>
+                        <li class="nav-item text-center ms-4">
+                            <a asp-controller="Applicant" asp-action="Profile" class="nav-link fs-6">
+                                <i class="bi bi-person-circle fs-4"></i><br>Profile
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        @* mobile search bar *@
+        <div class="d-block d-lg-none bg-white px-3 py-2 shadow-sm sticky-top">
+            <input class="form-control" type="search" placeholder="Search..." />
+        </div>
+
+        @* mobile bottom nav *@
+        <nav class="navbar d-flex d-lg-none fixed-bottom bg-white shadow-lg justify-content-around py-2">
+            <a asp-controller="Applicant" asp-action="Feed" class="nav-link text-dark">
+                <i class="bi bi-house-door-fill fs-2"></i><br>
+            </a>
+            @* <a asp-controller="Applicant" asp-action="JobSearch" class="nav-link text-dark">
+                <i class="bi bi-briefcase-fill fs-2"></i><br>
+            </a> *@
+            <a asp-controller="Applicant" asp-action="MyApplications" class="nav-link text-dark">
+                <i class="bi bi-envelope-fill fs-2"></i><br>
+            </a>
+            <a asp-controller="Applicant" asp-action="Notifications" class="nav-link text-dark">
+                <i class="bi bi-bell-fill fs-2"></i><br>
+            </a>
+            <a asp-controller="Applicant" asp-action="Profile" class="nav-link text-dark">
+                <i class="bi bi-person-circle fs-2"></i><br>
+            </a>
+        </nav>
+    </header>
+    @* body *@
+    <div class="container-fluid mx-0 mx-sm-5">
+        <div class="row align-items-start">
+            <!-- Right-side Profile card -->
+            <div class="col-md-2 col-lg-2 p-0 pt-3 d-none d-lg-block">
+                <div class="card rounded-3 shadow border m-1">
+                    <div class="d-flex align-items-center bg-gradient-custom text-white p-3 rounded-top">
+                        <a asp-controller="Applicant" asp-action="Profile" class="text-dark text-decoration-none">
+                            <img src="/images/pfp.png" alt="Profile" class="rounded-4 me-3" style="width: 50px; height: 50px;">
+                        </a>
+                    </div>
+                    @* to avoid runtime binding exception *@
+                    @* @if (ViewBag.Applicant != null)
+                    { *@
+                        <div class="bg-white p-3 rounded-bottom">
+                            <a asp-controller="Applicant" asp-action="Profile" class="text-dark text-decoration-none">
+                                <h6 class="mb-0">@User.Identity.Name</h6>
+                                @* <p class="mb-1">@ViewBag.Applicant.Skill</p> *@
+                                @* <p class="mb-0 text-muted">@ViewBag.Applicant.Location</p> *@
+                            </a>
+                        </div>
+                    @* }
+                    else
+                    {
+                        <div class="bg-white p-3 rounded-bottom">
+                            <a asp-controller="Applicant" asp-action="Profile" class="text-dark text-decoration-none">
+                                <h6 class="mb-0">Guest</h6>
+                                <p class="mb-1">Unknown skill</p>
+                                <p class="mb-0 text-muted">Unknown location</p>
+                            </a>
+                        </div>
+                    } *@
+
+                </div>
+                <div class="card rounded-3 shadow border m-1">  
+                    <div class="bg-white p-2 ps-3 rounded-bottom">
+                        @* <a asp-controller="Applicant" asp-action="SavedJobs" class="nav-link fs-6 mb-1 text-muted">
+                            <i class="bi bi-bookmark-fill fs-6"></i>   Saved Jobs
+                        </a> *@
+                        <a href="#" class="nav-link fs-6 mb-1 text-muted" data-bs-toggle="modal" data-bs-target="#editModal">
+                            <i class="bi bi-pencil-square"></i>   Edit Profile
+                        </a>
+                        <a class="nav-link text-dark d-flex align-items-center text-muted" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                            <i class="bi bi-gear-fill fs-6 me-2"></i> Settings
+                        </a>
+                        <a class="nav-link text-dark d-flex align-items-center text-muted" asp-area="Identity" asp-page="/Account/Logout" title="Manage">
+                            <i class="bi bi-box-arrow-right fs-6 me-2"></i> Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            @* Main Content Column *@
+            <div class="col-md-10 col-lg-10">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <footer class="border-top footer text-muted text-center">
+        <div class="container">
+            &copy; 2025 - JobConnect - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    @* Edit modal for edit page in side bar *@
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form asp-controller="Applicant" asp-action="EditProfile" method="post">
+                    <div class="modal-body d-flex">
+                        <div class="container-fluid">
+                               <h3>Page Info</h3>
+                               <label class="form-label">Name</label>
+                               <input type="text" name="Name" class="form-control">
+
+                               <label class="form-label mt-3">Location</label>
+                               <input type="text" name="Location" class="form-control">
+
+                                <label class="form-label mt-3">Skills</label>
+                                <textarea class="form-control" name="Skill" placeholder="Enter your latest expertise"></textarea>
+
+                               <label class="form-label mt-3">Tagline Skills</label>
+                               <textarea class="form-control" name="TaglineSkills" placeholder="web dev / Unity / ML engineer etc. (must write separated by comma)"></textarea>
+
+                               <label class="form-label mt-3">About</label>
+                               <textarea class="form-control" name="About"></textarea>
+
+                               <label class="form-label mt-3">Education</label>
+                               <input type="text" name="Education" class="form-control" placeholder="Update only latest level of education">
+
+                               @* <label class="form-label mt-3">Work Experience</label>
+                               <div class="row g-2">
+                                  <div class="col-md-4">
+                                      <input type="text" class="form-control" placeholder="Position">
+                                  </div>
+                                  <div class="col-md-4">
+                                      <input type="text" class="form-control" placeholder="Company">
+                                  </div>
+                                  <div class="col-md-4">
+                                      <input type="text" class="form-control" placeholder="Duration (e.g. 2020–2024)">
+                                  </div>
+                               </div> *@
+
+                               <label class="form-label mt-3">Certifications</label>
+                               <input type="text" name="Certifications" class="form-control" placeholder="Add certification">
+                        </div>
+                    </div>
+               
+                    @* modal footer *@
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

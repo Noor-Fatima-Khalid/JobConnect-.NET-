@@ -1,0 +1,139 @@
+﻿@model EmpProfileViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Job_Portal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Job_Portal.styles.css" asp-append-version="true" />
+    @* BootStrap CSS *@
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css">
+    @* BootStrap JS *@
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.js"></script>
+    @* BootStrap Icons *@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+
+<body class="bg-mybg vw-100">
+    <header>
+        @* desktop nav bar *@
+        <nav class="navbar sticky-top navbar-expand-lg bg-white shadow-sm pt-2 d-none d-lg-flex">
+            <div class="container">
+                <a class="navbar-brand" href="/Employers/Dashboard">
+                    <img src="/images/logo1.png" alt="logo" style="width: 80px; height: auto;">
+                </a>
+
+                <form class="d-flex search-bar ms-3">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    </div>
+                </form>
+
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item text-center ms-5">
+                            <a asp-controller="Employers" asp-action="Dashboard" class="nav-link fs-6">
+                                <i class="bi bi-house-door-fill fs-4"></i><br>Home
+                            </a>
+                        </li>
+
+                        <li class="nav-item text-center ms-5">
+                            <a asp-controller="Employers" asp-action="JobPost" class="nav-link fs-6">
+                                <i class="bi bi-building fs-4"></i><br>Post a Job
+                            </a>
+                        </li>
+                        <li class="nav-item text-center ms-5">
+                            <a asp-controller="Employers" asp-action="Applicants" class="nav-link fs-6">
+                                <i class="bi bi-people-fill fs-4"></i><br>Applicants
+                            </a>
+                        </li>
+                        <li class="nav-item text-center ms-5">
+                            <a asp-controller="Employers" asp-action="Profile" class="nav-link fs-6">
+                                <i class="bi bi-person-circle fs-4"></i><br>Profile
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        @* mobile search bar *@
+        <div class="d-block d-lg-none bg-white px-3 py-2 shadow-sm sticky-top">
+            <input class="form-control" type="search" placeholder="Search..." />
+        </div>
+
+        @* mobile bottom nav *@
+        <nav class="navbar d-flex d-lg-none fixed-bottom bg-white shadow-lg justify-content-around py-2">
+            <a asp-controller="Employers" asp-action="Dashboard" class="text-center text-dark">
+                <i class="bi bi-house-door-fill fs-4"></i><br><small>Home</small>
+            </a>
+            <a asp-controller="Employers" asp-action="JobPost" class="text-center text-dark">
+                <i class="bi bi-building fs-4"></i><br><small>Post</small>
+            </a>
+            <a asp-controller="Employers" asp-action="Applicants" class="text-center text-dark">
+                <i class="bi bi-people-fill fs-4"></i><br><small>Applicants</small>
+            </a>
+            <a asp-controller="Employers" asp-action="Profile" class="text-center text-dark">
+                <i class="bi bi-person-circle fs-4"></i><br><small>Profile</small>
+            </a>
+        </nav>
+    </header>
+
+    <div class="container-fluid rounded-3 mt-3 mx-0 mx-sm-5">
+        <div class="row">
+            @* Main Body *@
+            <div class="col-lg-8 col-md-10">
+                <main role="main">
+                            @RenderBody()
+                </main>
+            </div>
+
+            @* Sidebar (Similar Interests) *@
+            <div class="col-lg-3 col-md-3 m-0 mt-1 d-none d-lg-block">
+                <div class="card shadow p-3 pb-2 bg-white border">
+                    <header>
+                        <h5 class="card-title mb-3">Similar Interests</h5>
+                    </header>
+
+                    <div class="container">
+                            @foreach (var e in Model.Employers)
+                            {
+                            <div class="row align-items-center">
+                                <div class="col-3">
+                                    <img src="@Url.Content("~/images/i2c.png")" alt="Logo" class="img-fluid rounded" style="max-width:50px; height:auto;" />
+                                </div>
+                                <div class="col-9">
+                                    <strong>@e.Company</strong>
+                                    <p class="text-muted">@e.Industry</p>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <a asp-controller="Applicant" asp-action="ViewEmployer" class="btn btn-primary rounded-1 w-100 text-white text-decoration-none">
+                                    View Company
+                                </a>
+                            </div>
+                            }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="border-top footer text-muted text-center">
+        <div class="container">
+            &copy; 2025 - JobConnect - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+            @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

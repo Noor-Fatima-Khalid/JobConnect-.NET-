@@ -1,0 +1,87 @@
+﻿@model DashboardViewModel
+
+@{
+    Layout = "~/Views/Shared/Employers/_EmpLayout.cshtml";
+    ViewData["Title"] = "Dashboard";
+}
+<div class="card shadow p-3 bg-white border">
+    <h4 class="custom_color mb-3">Manage recent posts</h4>
+    <div class="row">
+        @foreach (var j in Model.Jobs. Take(2))     // Added .Take(2) to make sure that only two jobs are displayed on the 
+                                                    // dashboard, even if the list contains more jobs. By pressing see more,
+        {                                           // we can view all the jobs. 
+            <div class="col-md-6 mb-3">
+                <div class="card shadow p-1 bg-white border">
+                    <div class="card-body">
+                        @* Profile info in header *@
+                        <div class="d-flex align-items-center">
+                            <img src="/images/i2c.png" alt="Logo" class="rounded-circle" width="66"
+                            height="50">
+                            <div class="ms-3">
+                                <h6 class="mb-0 fw-bold custom_color">@Model.Jobs.FirstOrDefault()?.Employer.Company</h6>
+                                <small class="text-muted text-start">@Model.Jobs.FirstOrDefault()?.Industry</small>
+
+                            </div>
+                        </div>
+                        @* Post Text *@
+                        <div class="fs-6 mt-2">
+                            <p class=".fs-6 fw-normal mb-1">Job Title: @j.Title</p>
+                            <p class=".fs-6 fw-normal mb-1">Location: @j.Location</p>
+                            <p class=".fs-6 fw-normal mb-1">Employment Type: @j.EmpType</p>
+                            <p class=".fs-6 fw-normal mb-1">Salary: @j.Salary</p>
+
+                            <a asp-controller="Employers" asp-action="AllJobs" class="fs-6 text-decoration-underline text-muted d-block mt-2">See more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <hr class="text-muted mt-1 mb-2">
+    <div class="row">
+        <div class="text-center">
+            <a asp-controller="Employers" asp-action="AllJobs" class="text-decoration-none"> See all posts <i class="bi bi-arrow-right"></i> </a>
+        </div>
+    </div>
+</div>
+
+@* Job application cards *@
+<div class="card shadow p-3 mt-3 bg-white border">
+    <h4 class="custom_color">Job Applications</h4>
+    <div class="row">
+        @foreach (var a in Model.Resumes.Take(4))
+        {
+            <div class="col-md-6 col-lg-6">
+                <div class="card shadow-sm p-3 border-1 mb-3">
+                    <div class="d-flex align-items-center">
+                        <img src="/images/pfp.png" alt="Profile" class="rounded-circle" width="65" height="60">
+                        <div class="ms-3">
+                            <h6 class="fw-bold mb-0">@a.Name</h6>
+                            <small class="text-muted"><i class="bi bi-envelope"></i> @a.Email </small>
+                            <br />
+                            <small class="text-muted"><i class="bi bi-briefcase"></i> @a.Field </small>
+                            <br />
+                            <small class="text-muted"><i class="bi bi-geo-alt"></i> @a.Location </small>
+                        </div>
+                    </div>
+                    @* <div class="mt-3">
+                        @foreach (var skill in a.Skill.Trim('}', '{').Split(','))
+                        {
+                            <span class="badge bg-light text-dark border">@skill</span>
+                        }
+                    </div> *@
+                </div>
+            </div>
+        }
+    </div>
+
+    <hr class="text-muted mt-1 mb-2">
+
+    <div class="row">
+        <div class="text-center">
+            <a asp-controller="Employers" asp-action="Applicants" class="text-decoration-none">
+                See all applications <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿@model List<Employer>
+
+@{
+    Layout = "~/Views/Shared/Applicants/_ApLayout.cshtml";
+    ViewData["Title"] = "Notifications";
+}
+
+<div class="row">
+    <!-- Notification Area -->
+    <div class="col-lg-8 p-1">
+        <div class="card bg-white border-1 rounded-2 m-3">
+            <h4 class="ms-4 mt-2">Notifications</h4>
+            <div id="notificationsList" class="p-3">
+                <div id="noNotificationsMsg" class="text-muted">No new notifications.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Suggested Companies -->
+    <div class="col-md-3 col-lg-3 d-none d-lg-block mt-4">
+        <div class="card shadow p-3 pb-2 bg-white border">
+            <header>
+                <h5 class="card-title mb-3">Companies you might be interested in</h5>
+            </header>
+
+            <div class="container">
+                @foreach (var e in Model)
+                {
+                    <div class="row align-items-center mb-2">
+                        <div class="col-3">
+                            <img src="@Url.Content("~/images/i2c.png")" alt="Logo" class="img-fluid rounded"
+                                 style="max-width:50px; height:auto;" />
+                        </div>
+                        <div class="col-9">
+                            <h6>@e.Company</h6>
+                            <p class="text-muted">@e.Industry</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <a asp-controller="Applicant" asp-action="ViewEmployer" asp-route-id="@e.Id" class="btn btn-primary rounded-1 w-100">View Company</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<i id="notificationIcon" class="bi bi-bell position-relative">
+    <span id="notifBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none">
+        •
+        <span class="visually-hidden">New notifications</span>
+    </span>
+</i>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.0/signalr.min.js"></script>
+    <script src="~/js/notify.js"></script>
+}

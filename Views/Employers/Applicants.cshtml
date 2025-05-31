@@ -1,0 +1,64 @@
+﻿@model List<JobApplication>
+
+@{
+    Layout = "~/Views/Shared/Employers/_EmpLayout.cshtml";
+    ViewData["Title"] = "Applicants";
+}
+
+@* <div class="container bg-danger"> *@
+<div class="card bg-white d-flex justify-content-between p-2">
+    <h4> Applicants </h4>
+    @* here, i have to implement a partial view of list of jobs with these tags *@
+    <div class="d-flex flex-wrap gap-2">
+        <a href="#" class="nav-link fs-6 d-inline-block">
+            <span class="badge bg-light text-dark border rounded-2 fw-normal">IT</span>
+        </a>
+        <a href="#" class="nav-link fs-6 d-inline-block">
+            <span class="badge bg-light text-dark border rounded-2 fw-normal">Healthcare</span>
+        </a>
+        <a href="#" class="nav-link fs-6 d-inline-block">
+            <span class="badge bg-light text-dark border rounded-2 fw-normal">Finance</span>
+        </a>
+        <a href="#" class="nav-link fs-6 d-inline-block">
+            <span class="badge bg-light text-dark border rounded-2 fw-normal">Marketing</span>
+        </a>
+    </div>
+    <div class="table-responsive">
+        <table border="1" class="table table-light table-hover mt-3">
+            <thead>
+                <tr class ="table-primary">
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Applied For</th>
+                    <th>Date Applied</th>
+                    <th>Resume</th>
+                    <th>Status</th>
+                    @* <th>Actions</th> *@
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (var j in Model)
+                    {
+                        <tr class="table-secondary">
+                            <td>@(j.Applicant?.Name ?? "No applicant data")</td>
+                            <td>@j.Applicant?.User.Email</td>
+                            <td>@j.Job?.Title</td>   
+                            <td>@j.AppliedOn.ToString()</td>
+                            <td><a href="#" download>Download</a></td>
+                            <td>@j.Status</td>
+                            
+                        </tr>  
+                    }
+                }
+                else
+                {
+                    <div>No applicants found.</div>
+                }
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,116 @@
+﻿@model AppFeedViewModel
+
+@{
+    Layout = "~/Views/Shared/Applicants/_ApLayout.cshtml";
+    ViewData["Title"] = "Home";
+}
+
+    <div class="row mt-3 ms-0 me-2">
+        <div class="col-md-8 col-lg-8">
+        @*<div class="row">
+            <div class="card rounded-5 shadow border m-0 mb-3 p-3">
+                <form asp-controller="Applicant" asp-action="Search" method="post">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <input type="text" name="search" placeholder="Search for job role"
+                                   class="form-control rounded-2" />
+                        </div>
+                </form>
+                <form action="/" method="post">
+                        <div class="col-md-4">
+                            <select name="filter" id="filter" class="form-select">
+                                <option value="">Filter by</option>
+                                <option value="fulltime">Onsite</option>
+                                <option value="parttime">Hybrid</option>
+                                <option value="remote">Remote</option>
+                                <option value="internship">Internship</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary w-100">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div> *@
+
+        <div class="row">
+            @foreach (var j in Model.Jobs)
+            {
+                <div class="card rounded-3 shadow border m-0 mb-3 p-1 ps-4">
+                    <div class="container">
+                        <div class="row d-flex justify-content-between align-items-center mt-2">
+                            <div class="d-flex align-items-center mb-2">
+                                <img src="/images/i2c.png" alt="logo" class="rounded-circle"
+                                     style="width: 50px; height: 50px;" />
+                                <div class="ms-3">
+                                    @if (j.Employer != null)
+                                    {
+                                        @* make the link dynamic *@
+                                        <a href="@Url.Content("/Employers/Profile")" class="text-dark text-decoration-none">
+                                            <strong class="fw-bold fs-5">@j.Employer.Company</strong>
+                                            <p class="text-muted mb-0">@j.Employer.Industry</p>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <strong class="fw-bold fs-5 text-danger">[Unknown Employer]</strong>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                            <div class="me-3">
+                                <h6>Job Position: @j.Title</h6>
+
+                                <div class="mb-3">
+                                    <p class="m-0">Employement Type: @j.EmpType</p>
+                                    <p class="m-0">Location: @j.Location</p>
+                                    <p class="m-0">Salary: @j.Salary</p>
+                                    <p class="m-0">Description: @j.Description</p>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">Posted on: @j.PostedOn</small>
+                                    <small class="text-muted">Status: @j.Status </small>
+                                </div>
+
+                                <hr />
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <a asp-controller="Applicant" asp-action="Apply" asp-route-jobId="@j.Id" class="btn btn-primary rounded-pill">Apply Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            }
+        </div>
+
+        </div>
+        
+        <div class="col-md-3 col-lg-3 d-none d-lg-block ">
+            <div class="card shadow p-3 pb-2 bg-white border">
+                <header>
+                    <h5 class="card-title mb-3">Companies you might be interested in</h5>
+                </header>
+
+                <div class="container">
+                    @foreach (var e in Model.Employers)
+                    {
+                        <div class="row align-items-center">
+                            <div class="col-3">
+                                <img src="@Url.Content("~/images/i2c.png")" alt="Logo" class="img-fluid rounded"
+                                     style="max-width:50px; height:auto;" />
+                            </div>
+                            <div class="col-9">
+                                <h6>@e.Company</h6>
+                                <p class="text-muted">@e.Industry</p>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <a asp-controller="Applicant" asp-action="ViewEmployer" asp-route-id="@e.Id" class="btn btn-primary rounded-1 w-100">View Company</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>

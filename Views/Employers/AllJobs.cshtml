@@ -1,0 +1,47 @@
+﻿@model List<Job>
+
+@{
+    Layout = "~/Views/Shared/Employers/_EmpLayout.cshtml";
+    ViewData["Title"] = "Dashboard";
+}
+<div class="card shadow p-3 bg-white border">
+    <h4 class="custom_color mb-3">Job Posts </h4>
+    <div class="row">
+        @foreach (var j in Model)
+        {                                       
+            <div class="col-md-6 mb-3">
+                <div class="card shadow p-1 bg-white border">
+                    <div class="card-body">
+                        @* Profile info in header *@
+                        <div class="d-flex align-items-center">
+                            <img src="/images/i2c.png" alt="Logo" class="rounded-circle" width="66"
+                                 height="50">
+                            <div class="ms-3">
+                                <h6 class="mb-0 fw-bold custom_color">@Model.FirstOrDefault().Employer.Company</h6>
+                                <small class="text-muted text-start">@Model.FirstOrDefault()?.Industry</small>
+                            </div>
+                        </div>
+                        @* Post Text *@
+                        <div class="fs-6 mt-2">
+                            <p class=".fs-6 fw-normal mb-1">Job Title: @j.Title</p>
+                            <p class=".fs-6 fw-normal mb-1">Job Description: @j.Description</p>
+                            <p class=".fs-6 fw-normal mb-1">Location: @j.Location</p>
+                            <p class=".fs-6 fw-normal mb-1">Industry: @j.Industry</p>
+                            <p class=".fs-6 fw-normal mb-1">Employment Type: @j.EmpType</p>
+                            <p class=".fs-6 fw-normal mb-1">Salary: @j.Salary</p>
+                            <p class=".fs-6 fw-normal mb-1">Posted On: @j.PostedOn</p>
+
+
+                            @* <form action="" method="get"> *@
+                                @* <input type="submit" class="btn btn-outline-info rounded-3" name="status" value="Close Job Post?" /> *@
+                                @* this will delete the job post from db *@
+                                @* a pop will appear telling it is irreversible action. Are you sure to delete the job post? *@
+                                @* if yes, delete from db *@
+                            @* </form> *@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

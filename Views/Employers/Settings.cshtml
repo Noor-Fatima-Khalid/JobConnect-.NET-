@@ -1,0 +1,83 @@
+﻿@model Employer
+
+@{
+    Layout = "~/Views/Shared/Employers/_EmpLayout.cshtml";
+	ViewData["Title"] = "Settings";
+}
+<div class="container mt-2">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header text-center">
+                <h4>Account Settings</h4>
+            </div>
+            <div class="card-body">
+                 @* Verification *@
+                <div id="verifySection" class="ms-2">
+                    <h5 class="mb-3">Verify Your Identity</h5>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" value="@Model.User.Email" disabled>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-8">
+                            <label for="verifyPass" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="verifyPass" placeholder="Enter your password" />
+                        </div>
+                        <div class="col-3 pt-4 mt-1">
+                            <button class="btn btn-primary" onclick="verifyAccount()">Verify</button>
+                            <div id="verifyMsg" class="mt-2 text-danger" hidden>Invalid credentials</div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                @* buttons *@
+                <div class="d-grid gap-2 mt-3">
+                    <button id="deactivate" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#deactivateModal" disabled>Deactivate Account</button>
+                    <button id="delete" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" disabled>Delete Account</button>
+                </div>
+            </div>
+        </div>
+
+        @* Deactivate Modal *@
+        <div class="modal fade" id="deactivateModal" tabindex="-1" aria-labelledby="deactivateModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-warning">
+                        <h5 class="modal-title" id="deactivateModalLabel">Deactivate Account</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to deactivate your account? You can reactivate it later.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-warning">Confirm Deactivation</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @* Delete Modal *@
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="deleteModalLabel">Delete Account</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        This action is <p class="d-inline text-danger">irreversible</p>.
+                        Are you sure you want to permanently delete your account?
+                        Deleting will remove the account entirely from JobConnect. Once deleted, you will no longer be to access to the Page.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger">Confirm Deletion</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

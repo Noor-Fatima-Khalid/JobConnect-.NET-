@@ -1,0 +1,45 @@
+﻿@model ApplyViewModel
+@{
+    Layout = "~/Views/Shared/Applicants/_ApLayout.cshtml";
+    ViewData["Title"] = "Apply";
+}
+
+<div class="row mt-3 ms-0 me-2">
+    <div class="col-md-11 col-lg-11">
+        <div class="row">
+            <div class="card rounded-5 shadow border m-0 mb-3 p-3">
+                <form asp-action="Apply" enctype="multipart/form-data" method="post">
+
+                    <input type="hidden" asp-for="JobId" />
+
+                    <div class="form-group">
+                        <label asp-for="Resume.Name"></label>
+                        <input asp-for="Resume.Name" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Resume.Email"></label>
+                        <input asp-for="Resume.Email" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Resume.Location"></label>
+                        <input asp-for="Resume.Location" class="form-control" placeholder="Lahore"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Resume.Field"></label>
+                        <input asp-for="Resume.Field" class="form-control" placeholder="Software Engineering..."/>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ResumeFile">Upload Resume</label>
+                        <input asp-for="ResumeFile" type="file" class="form-control" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-2">Apply</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

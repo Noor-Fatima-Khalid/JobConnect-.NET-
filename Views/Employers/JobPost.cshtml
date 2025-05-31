@@ -1,0 +1,75 @@
+﻿@model Job
+
+@{
+    Layout = "~/Views/Shared/Employers/_EmpLayout.cshtml";
+	ViewData["Title"] = "Post a Job";
+}
+
+<div class="card shadow p-4 bg-white border">
+    <h4 class="custom_color mb-3">Post a job</h4>
+    <form asp-action="JobPost" method="post">
+        <div class="card-body">
+            @* Job Title *@
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label">Job Title</label>
+                <input type="text" id="Title" asp-for="Title" class="form-control">
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            @* Job Description *@
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label">Job Description</label>
+                <textarea id="Description" asp-for="Description" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            @* Industry *@
+            <div class="mb-3">
+                <label asp-for="Industry" class="form-label">Industry</label>
+                <input type="text" id="Industry" asp-for="Industry" class="form-control">
+                <span asp-validation-for="Industry" class="text-danger"></span>
+            </div>
+
+            @* Salary *@
+            <div class="mb-3">
+                <label asp-for="Salary" class="form-label">Salary</label>
+                <input type="text" id="Salary" asp-for="Salary" class="form-control">
+                <span asp-validation-for="Salary" class="text-danger"></span>
+            </div>
+
+            @*Employment Type *@
+            <div class="mb-3">
+                <label class="form-label">Employment Type</label>
+                <div class="form-check">
+                    <input asp-for="EmpType" type="radio" class="form-check-input" value="Remote" />
+                    <label class="form-check-label" for="EmploymentType">Remote</label>
+                </div>
+                <div class="form-check">
+                    <input asp-for="EmpType" type="radio" class="form-check-input" value="Onsite" />
+                    <label class="form-check-label" for="EmploymentType">On-site</label>
+                </div>
+                <div class="form-check">
+                    <input asp-for="EmpType" type="radio" class="form-check-input" value="Hybrid" />
+                    <label class="form-check-label" for="EmploymentType">Hybrid</label>
+                </div>
+                <div class="form-check">
+                    <input asp-for="EmpType" type="radio" class="form-check-input" value="Internship" />
+                    <label class="form-check-label" for="EmploymentType">Internship</label>
+                </div>
+                <span asp-validation-for="EmpType" class="text-danger"></span>
+            </div>
+
+            @* Location *@
+            <div class="mb-3">
+                <label asp-for="Location" class="form-label">Location</label>
+                <input type="text" id="Location" asp-for="Location" class="form-control">
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+
+            @* Submit Button *@
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary" id="PostJob">Post Job</button>
+            </div>
+        </div>
+    </form>
+</div>

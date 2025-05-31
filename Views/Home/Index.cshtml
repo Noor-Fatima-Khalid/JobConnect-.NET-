@@ -1,0 +1,115 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Job Connect";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobConnect</title>
+    <link rel="icon" href="/logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="~/css/site.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <style>
+        body {
+            background-image: linear-gradient(to right, #bccce3, #a6edbb);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+        }
+
+        .navbar {
+            background-color: #d1dceb;
+        }
+    </style>
+</head>
+
+<body class="container-fluid p-0">
+    @* navbar *@
+    <nav class="navbar navbar-expand-lg shadow-sm" style="height: 70px">
+        <div class="container-fluid d-flex justify-content-between align-items-center mx-5">
+            <div class="d-flex align-items-center">
+                <img src="/images/logo1.png" alt="logo" style="width:80px;">
+                <h4 class="ms-3 mb-0 fw-normal text-primary-emphasis">Job Connect</h4>
+            </div>
+            <div class="d-none d-sm-block">
+                <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-outline-success">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    @* main body *@
+    <div class="d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+        <div class="row w-100 justify-content-center align-items-start flex-column flex-md-row px-3">
+            @* Right side - first on mobile *@
+
+            <div class="col-md-4 position-relative order-1 order-md-2 mb-md-0">
+                <div class="d-flex align-items-center justify-content-center">
+                    <img src="/images/logo1.png" />
+                </div>
+            </div>
+
+            @* Left side - second on mobile *@
+            <div class="col-md-6 text-center order-2 order-md-1">
+                <h1 id="demo" class="mt-4 fw-bold text-info-emphasis"></h1>
+                <h4 class="mt-3 text-info-emphasis">Launch Your Career. Land Your Dream.</h4>
+
+                <p class="mt-3 text-secondary px-4">
+                    Job Connect bridges passionate professionals with the right opportunities. Whether you're a fresh graduate or a seasoned expert, we simplify your job search with smart tools and real connections.
+                </p>
+
+                <button class="btn btn-primary mt-3 px-4 py-2" onclick="showOverlay()">Get Started</button>
+            </div>
+        </div>
+    </div>
+
+    @* Overlay for Get Started button *@
+    <div id="overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); align-items:center; justify-content:center;">
+        <div class="bg-secondary-subtle p-4 rounded shadow" style="width: 300px;">
+            <h6 class="mb-3 text-black">Are you a: </h6>
+            <a href="/Identity/Account/RegisterApplicant" class="text-decoration-none text-dark">Professional</a>
+            <br />
+            <a href="/Identity/Account/RegisterEmployer" class="text-decoration-none text-dark">Employer/Company</a>
+        </div>
+    </div>
+
+    <script>
+        // Typing effect
+        function typeWriter(text, elementId, speed = 50) {
+            let i = 0;
+            const element = document.getElementById(elementId);
+            element.innerHTML = '';
+            function write() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(write, speed);
+                }
+            }
+            write();
+        }
+
+        window.onload = function () {
+            typeWriter("Job Connect", "demo");
+        };
+
+        // Show overlay
+        function showOverlay() {
+            document.getElementById("overlay").style.display = "flex";
+        }
+
+        // Hide overlay
+        document.addEventListener("click", function (e) {
+            const overlay = document.getElementById("overlay");
+            if (e.target === overlay) {
+                overlay.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+﻿@model List<JobApplication>
+
+@{
+    Layout = "~/Views/Shared/Applicants/_ApLayout.cshtml";
+    ViewData["Title"] = "My Applications";
+}
+
+
+<div class="col-12 col-lg-11">
+    <div class="card bg-white d-flex justify-content-between p-4 mt-3">
+        <h5>My Applications</h5>
+        <p>View Applications to job posts you applied for. </p>
+        <div class="table-responsive">
+            <table border="1" class="table table-light table-hover mt-3">
+                <thead>
+                    <tr class="table-primary">
+                        <th>Id</th>
+                        <th>Applied For</th>
+                        <th>Employement Type</th>
+                        <th>Location</th>
+                        <th>Resume</th>
+                        <th>Date Applied</th>
+                        <th>Status</th>
+                        @* <th>View Job</th> *@
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var j in Model)
+                    {
+                        <tr class="table-secondary">
+                            <td>@j.Id</td>
+                            <td>@j.Job.Title</td>
+                            <td>@j.Job.EmpType</td>
+                            <td>@j.Job.Location</td>
+                            <td><a href="#" download>Download</a></td>
+                            <td>@j.AppliedOn</td>
+                            <td>@j.Status</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+﻿@model EmpProfileViewModel
+
+@{
+    Layout = "~/Views/Shared/Employers/_EmpProfileLayout.cshtml";
+    ViewData["Title"] = "Profile";
+}
+
+<div class="card shadow p-3 mb-2 bg-white border">
+    <div class="d-flex align-items-center">
+        <img src="@Url.Content("/images/i2c.png")" alt="Company Logo" width="200" height="120">
+        <div class="ms-3">
+            <h4 class="fw-bold">@Model.CurrEmployer.Company</h4>
+            <p class="text-muted">@Model.CurrEmployer.Industry | @Model.CurrEmployer.Location</p>
+            <p>@Model.CurrEmployer.EmployeeCount Employees</p>
+            <a href="@Model.CurrEmployer.Website" target="_blank" class="btn btn-outline-primary">Visit Website</a>
+        </div>
+    </div>
+
+    <hr>
+
+    <h5>About</h5>
+    <p>@Model.CurrEmployer.Description</p>
+</div>
+
+<div class="card shadow p-3 mb-2 bg-white border">
+    <h5>Job Openings</h5>
+    @if (Model.Jobs.Any())
+    {
+        <table class="table table-bordered">
+            <tr>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Location</th>
+                <th>Salary</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var job in Model.Jobs)
+            {
+                <tr>
+                    <td>@job.Title</td>
+                    <td>@job.EmpType</td>
+                    <td>@job.Location</td>
+                    <td>$@job.Salary</td>
+                    <td>@job.Status</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>No job openings available.</p>
+    }
+</div>
+<div class="card shadow p-3 pb-0 bg-white border">
+    <h5>Contact</h5>
+    <p>
+        Email: <a href="mailto:@Model.CurrEmployer.User.Email"> @Model.CurrEmployer.User.Email </a>
+        <br />
+        Phone: <a href="tel:@Model.CurrEmployer.PhoneNo"> @Model.CurrEmployer.PhoneNo </a>
+    </p>
+</div>

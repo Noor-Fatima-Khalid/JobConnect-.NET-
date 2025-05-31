@@ -1,0 +1,87 @@
+﻿@model EmpProfileViewModel
+
+@{
+    Layout = "~/Views/Shared/Applicants/_ProfileLayout.cshtml"; // Use your existing layout or adjust if needed
+}
+
+<div class="row justify-content-center mt-4">
+    <div class="card shadow-lg p-3" style="max-width: 1100px;">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <!-- Company Logo / Placeholder -->
+                <div class="col-md-4 text-center mb-3 mb-md-0">
+                    <img src="/images/i2c.png" alt="Company Logo" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
+                </div>
+
+                <!-- Basic Info -->
+                <div class="col-md-8">
+                    <h3 class="card-title mb-1">@Model.CurrEmployer.Company</h3>
+                    <p class="text-muted mb-0">
+                        @(!string.IsNullOrEmpty(Model.CurrEmployer.Industry) ? Model.CurrEmployer.Industry : "Industry not specified")
+                    </p>
+                    <p class="text-muted mb-0">@Model.CurrEmployer.Location</p>
+                    <p class="text-muted">Employees: @Model.CurrEmployer.EmployeeCount</p>
+                    @if (!string.IsNullOrEmpty(Model.CurrEmployer.Website))
+                    {
+                        <a href="@Model.CurrEmployer.Website" target="_blank" class="btn btn-link p-0">
+                            Visit Website
+                        </a>
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.CurrEmployer.PhoneNo))
+                    {
+                        <p class="mt-2 mb-0">Phone: @Model.CurrEmployer.PhoneNo</p>
+                    }
+
+                    @if (Model.CurrEmployer?.User != null && !string.IsNullOrEmpty(Model.CurrEmployer.User.Email))
+                    {
+                        <a href="mailto:@Model.CurrEmployer.User.Email" class="btn btn-outline-primary rounded-pill px-4 mt-2">
+                            Contact
+                        </a>
+                    }
+
+                </div>
+
+                <div class="col-12 mt-4">
+                    <h6>About the Company</h6>
+                    <p>@(!string.IsNullOrEmpty(Model.CurrEmployer.Description) ? Model.CurrEmployer.Description : "No description available.")</p>
+                </div>
+
+                <hr />
+
+                <div class="col-12 mt-3">
+                    <h6>Current Job Openings</h6>
+                    @if (Model.Jobs != null && Model.Jobs.Any())
+                    {
+                        <ul class="list-group">
+                            @foreach (var job in Model.Jobs)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <strong>@job.Title</strong>
+                                    </div>
+
+                                    <div class="d-flex gap-4 ms-4">
+                                        <p class="mb-0"><small>Location: @job.Location</small></p>
+                                        <p class="mb-0"><small>Salary: @job.Salary</small></p>
+                                        <p class="mb-0"><small>Industry: @job.Industry</small></p>
+                                        <p class="mb-0"><small>Posted on: @job.PostedOn.ToShortDateString()</small></p>
+                                    </div>
+
+                                    <a href="@Url.Action("Details", "Jobs", new { id = job.Id })" class="btn btn-sm btn-primary align-self-start">
+                                        Apply
+                                    </a>
+                                </li>
+                                <hr />
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>No current job openings.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Job_Portal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Job_Portal.styles.css" asp-append-version="true" />
+    @* BootStrap CSS *@
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css">
+    @* BootStrap JS *@
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.js"></script>
+    @* BootStrap Icons *@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+
+<body class="bg-mybg">
+    <header>
+        @* top nav bar *@
+        <nav class="navbar sticky-top navbar-expand-lg bg-white shadow-sm pt-2 d-none d-lg-flex">
+            <div class="container">
+                <a class="navbar-brand">
+                    <img src="/images/logo1.png" alt="logo" style="width: 80px; height: auto;">
+                </a>
+
+                <form class="d-flex search-bar ms-3">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    </div>
+                </form>
+
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-5 ps-4">
+                        <li class="nav-item text-center ms-5">
+                            <a asp-controller="Applicant" asp-action="Feed" class="nav-link fs-6">
+                                <i class="bi bi-house-door-fill fs-4"></i><br>Home
+                            </a>
+                        </li>
+
+                      @*   <li class="nav-item text-center ms-4">
+                            <a asp-controller="Applicant" asp-action="JobSearch" class="nav-link fs-6">
+                                <i class="bi bi-briefcase-fill fs-4"></i><br>Job Search
+                            </a>
+                        </li> *@
+                        <li class="nav-item text-center ms-4">
+                            <a asp-controller="Applicant" asp-action="MyApplications" class="nav-link fs-6">
+                                <i class="bi bi-envelope-fill fs-4"></i><br>My Applications
+                            </a>
+                        </li>
+                        <li class="nav-item text-center ms-4">
+                            <a asp-controller="Applicant" asp-action="Notifications" class="nav-link fs-6">
+                                <i class="bi bi-bell-fill fs-4"></i><br>Notifications
+                            </a>
+                        </li>
+                        <li class="nav-item text-center ms-4">
+                            <a asp-controller="Applicant" asp-action="Profile" class="nav-link fs-6">
+                                <i class="bi bi-person-circle fs-4"></i><br>Profile
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        @* mobile search bar *@
+        <div class="d-block d-lg-none bg-white px-3 py-2 shadow-sm sticky-top">
+            <input class="form-control" type="search" placeholder="Search..." />
+        </div>
+
+        @* mobile bottom nav *@
+        <nav class="navbar d-flex d-lg-none fixed-bottom bg-white shadow-lg justify-content-around py-2">
+            <a asp-controller="Applicant" asp-action="Feed" class="nav-link text-dark">
+                <i class="bi bi-house-door-fill fs-2"></i><br>
+            </a>
+            @* <a asp-controller="Applicant" asp-action="JobSearch" class="nav-link text-dark">
+                <i class="bi bi-briefcase-fill fs-2"></i><br>
+            </a> *@
+            <a asp-controller="Applicant" asp-action="MyApplications" class="nav-link text-dark">
+                <i class="bi bi-envelope-fill fs-2"></i><br>
+            </a>
+            <a asp-controller="Applicant" asp-action="Notifications" class="nav-link text-dark">
+                <i class="bi bi-bell-fill fs-2"></i><br>
+            </a>
+            <a asp-controller="Applicant" asp-action="Profile" class="nav-link text-dark">
+                <i class="bi bi-person-circle fs-2"></i><br>
+            </a>
+        </nav>
+    </header>
+    @* body *@
+    <div class="container">
+            <!-- Main Content Column -->
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+    </div>
+
+    <footer class="border-top footer text-muted text-center">
+        <div class="container">
+            &copy; 2025 - JobConnect - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

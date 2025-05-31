@@ -1,0 +1,22 @@
+﻿@model List<Job>
+
+@foreach (var j in Model)
+{
+    <div class="card bg-white mt-2 p-1">
+        <div class="row">
+            <div class="col-3">
+                <img src="/images/i2c.png" alt="i2c" style="width:80px; height: 80px;" />
+            </div>
+            <div class="col-7">
+                <strong>@(j.Employer?.Company ?? "Unknown Company")</strong>
+                <p class="mt-0 mb-0">@j.Title | Rs.@j.Salary</p>
+                <p class="mt-0 mb-0">@j.EmpType | @j.Location</p>
+                <p class="mt-0 mb-0">@j.Status</p>
+                <button class="btn btn-primary rounded-pill d-lg-none w-75 mt-2 mb-2 ms-1">Apply</button>
+            </div>
+            <div class="col-2 mt-4 d-none d-lg-block">
+                <a asp-controller="Applicant" asp-action="Apply" asp-route-jobId="@j.Id" class="btn btn-primary rounded-pill">Apply</a>
+            </div>
+        </div>
+    </div>
+}

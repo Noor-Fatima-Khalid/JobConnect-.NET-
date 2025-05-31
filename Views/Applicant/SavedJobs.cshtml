@@ -1,0 +1,57 @@
+﻿@model AppFeedViewModel
+
+@{
+    Layout = "~/Views/Shared/Applicants/_ApLayout.cshtml";
+}
+
+<div class="col-12 col-lg-11">
+    <div class="card shadow p-3 mb-2 mt-3 bg-white border">
+        <h4>Saved Job Openings</h4>
+        <div class="container mt-2">
+            <div class="row">
+                @if (Model.Jobs.Any())
+                {
+                    @foreach (var job in Model.Jobs)
+                    {
+                        @* First Card *@
+                        <div class="col-12 col-md-6 mb-3">
+                            <div class="card shadow bg-white border h-100">
+                                <!-- Full-width colored header -->
+                                <div class="bg-job-card-custom d-flex justify-content-between align-items-center px-3 py-2 border-bottom rounded-top">
+                                    <h6 class="text-decoration-underline mb-0">Job</h6>
+                                    <i class="bi bi-bookmark-fill"></i>
+                                </div>
+
+                                <!-- Body content -->
+                                <div class="p-3">
+                                    <p class="mb-1">Job Title:   @job.Title</p>
+                                    <p class="mb-1">Industry:    @job.Industry</p>
+                                    <p class="mb-1">Employement: @job.EmpType</p>
+                                    <p class="mb-1">Location:    @job.Location</p>
+                                    <p class="mb-1">Salary:Rs.   @job.Salary</p>
+                                    <p class="mb-1">Description: @job.Description</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-2 mb-0">
+                                        <small class="text-muted">Posted on: @job.PostedOn</small>
+                                        <small class="text-muted">Status: @job.Status </small>
+                                    </div>
+
+                                    <hr />
+                                    <div class="d-flex justify-content-end align-items-end m-0">
+                                        <a href="#" class="btn btn-primary rounded-pill">Apply</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    }
+                }
+                else
+                {
+                    <p>No Saved Jobs. <a href="~/Applicants/Feed" class="text-decoration-none">Browse more jobs.</a></p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
