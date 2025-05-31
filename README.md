@@ -2,7 +2,7 @@
 
 JobConnect is a modern webz-based platform designed to streamline the hiring process. It provides an intuitive interface for employers to post jobs, manage applications, and schedule interviews, while offering applicants a sleek portal to apply for jobs and track their submissions.
 
-**Features**
+**Features** <br>
 **For Employers**
 Post new job listings
 View and manage job applications
